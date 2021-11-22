@@ -1,42 +1,41 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			]
+			favorites: [],
+			modalActive: false
 		},
 		actions: {
-			// Use getActions to call a function within a fuction
-			exampleFunction: () => {
-				getActions().changeColor(0, "green");
-			},
-			loadSomeData: () => {
-				/**
-					fetch().then().then(data => setStore({ "foo": data.bar }))
-				*/
-			},
-			changeColor: (index, color) => {
-				//get the store
+			addFavorites(item) {
 				const store = getStore();
 
-				//we have to loop the entire demo array to look for the respective index
-				//and change its color
-				const demo = store.demo.map((elm, i) => {
-					if (i === index) elm.background = color;
-					return elm;
-				});
-
-				//reset the global store
-				setStore({ demo: demo });
+				function filterFavorites(arr, criteria) {
+					return arr.filter(function(obj) {
+						return Object.keys(criteria).every(function(c) {
+							return obj[c] == criteria[c];
+						});
+					});
+				}
+				if (filterFavorites(store.favorites, { label: item }).length < 1) {
+					setStore({
+						favorites: [
+							...store.favorites,
+							{
+								label: item,
+								icon: "pi pi-times",
+								command: () => {
+									store.favorites.splice(store.favorites.findIndex(e => e.label === item), 1);
+								}
+							}
+						]
+					});
+				} else {
+					setStore({ modalActive: true });
+				}
+			},
+			changeModal() {
+				setTimeout(function() {
+					setStore({ modalActive: false });
+				}, 3000);
 			}
 		}
 	};

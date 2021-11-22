@@ -1,14 +1,14 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
+import { Home } from "./pages/home";
+import { Demo } from "./pages/demo";
+import { DemoPlanets } from "./pages/demoPlanets";
 
-import { Home } from "./views/home";
-import { Demo } from "./views/demo";
-import { Single } from "./views/single";
 import injectContext from "./store/appContext";
-
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
+import ModalTitle from "react-bootstrap/ModalTitle";
 
 //create your first component
 const Layout = () => {
@@ -17,19 +17,20 @@ const Layout = () => {
 	const basename = process.env.BASENAME || "";
 
 	return (
-		<div>
+		<div className="d-flex flex-column h-100">
 			<BrowserRouter basename={basename}>
 				<ScrollToTop>
 					<Navbar />
+
 					<Switch>
 						<Route exact path="/">
 							<Home />
 						</Route>
-						<Route exact path="/demo">
+						<Route exact path="/demo/:id">
 							<Demo />
 						</Route>
-						<Route exact path="/single/:theid">
-							<Single />
+						<Route exact path="/demoPlanets/:id">
+							<DemoPlanets />
 						</Route>
 						<Route>
 							<h1>Not found!</h1>

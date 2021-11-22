@@ -1,0 +1,80 @@
+.containerInfo{
+    display: flex;
+
+    color: white;
+    
+}
+
+
+.info h1{
+    font-size: 3rem;
+    margin-bottom: 6%;
+    color: #9c374d;
+    animation: mymove 5s infinite;
+}
+
+@keyframes mymove {
+  50% {
+    color: #581725;    
+  }
+}
+
+
+.imgInfo{
+    width: 100%;
+    border-right: 2px solid #844452;
+    margin:0;
+    border-radius: 1rem 0 0 1rem;
+}
+.imgDecal{
+    background-image: url("https://static-mh.content.disney.io/starwars/assets/shared/decal-a67af2e7d567.png");
+    background-repeat: no-repeat;
+    background-size: 12rem;
+    z-index: 0;
+    width: 4.5rem;
+    height: 5rem;
+    opacity: 0.06;
+    right: -4rem;
+    bottom: -4.8rem;
+    display: block;
+    position: absolute;
+    
+}
+
+.colImg{
+    padding: 0;
+}
+.info{
+    margin:5%;
+}
+.containerAll{
+    margin-left: 3%;
+    margin-right: 3%;
+    border-radius: 1rem;
+    background-color: #323131;
+    }
+
+.table{
+    width: 90%;
+    margin: 2% 5% 2% 5%;
+    
+    
+}
+
+.rowStyle{
+    color:#844452;
+    
+}
+
+.table th{
+    margin:1rem;
+    padding:1rem;
+    border-top: hidden;
+    border-bottom: hidden;
+}
+
+.borderTable{
+    border-right: 1px solid white;
+    border-top: hidden;
+    border-bottom: hidden;
+}
