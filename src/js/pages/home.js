@@ -11,27 +11,18 @@ export const Home = () => {
 	const [planets, setPlanets] = useState([]);
 
 	const obtenerPersonajes = () => {
-		// const data = fetch("https://www.swapi.tech/api/people?page=1&limit=100");
-		// const personajes = data.json();
-		// setCharacters(personajes.results);
-
 		fetch("https://www.swapi.tech/api/people?page=1&limit=100")
 			.then(response => response.json())
 			.then(data => {
-				console.log(data);
-				setCharacters(data);
+				setCharacters(data.results);
 			});
 	};
 
 	const obtenerPlanetas = () => {
-		// const data = fetch("https://www.swapi.tech/api/planets?page=1&limit=100");
-		// const planetas = data.json();
-		// setPlanets(planetas.results);
-
 		fetch("https://www.swapi.tech/api/planets?page=1&limit=100")
 			.then(response => response.json())
 			.then(data => {
-				setPlanets(data);
+				setPlanets(data.results);
 			});
 	};
 

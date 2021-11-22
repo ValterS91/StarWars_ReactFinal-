@@ -15,19 +15,22 @@ export const Demo = () => {
 
 	const [person, setPerson] = useState([]);
 
-	console.log("PERSON", person);
+	const obtenerDatos = () => {
+		// const data = await fetch(`https://www.swapi.tech/api/people/${id}`);
+		// const users = await data.json();
+		// setPerson(users.result.properties);
 
-	useEffect(
-		() => {
-			const obtenerDatos = async () => {
-				const data = await fetch(`https://www.swapi.tech/api/people/${id}`);
-				const users = await data.json();
-				setPerson(users.result.properties);
-			};
-			obtenerDatos();
-		},
-		[id]
-	);
+		fetch(`https://www.swapi.tech/api/people/${id}`)
+			.then(response => response.json())
+			.then(data => {
+				console.log("PERSONA", data.result);
+				setPerson(data.result.properties);
+			});
+	};
+
+	useEffect(() => {
+		obtenerDatos();
+	}, []);
 
 	return (
 		<div className="container-fluid">
