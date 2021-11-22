@@ -11,17 +11,22 @@ export const DemoPlanets = props => {
 
 	const [planetas, setPlanetas] = useState([]);
 
-	useEffect(
-		() => {
-			const obtenerDatos = async () => {
-				const data = await fetch(`https://www.swapi.tech/api/planets/${id}`);
-				const users = await data.json();
-				setPlanetas(users.result.properties);
-			};
-			obtenerDatos();
-		},
-		[id]
-	);
+	const obtenerDatos = () => {
+		// const data = await fetch(`https://www.swapi.tech/api/people/${id}`);
+		// const users = await data.json();
+		// setPerson(users.result.properties);
+
+		fetch(`https://www.swapi.tech/api/planets/${id}`)
+			.then(response => response.json())
+			.then(data => {
+				console.log("PLANETA", data.result);
+				setPlanetas(data.result.properties);
+			});
+	};
+
+	useEffect(() => {
+		obtenerDatos();
+	}, []);
 
 	return (
 		<div className="container-fluid">
