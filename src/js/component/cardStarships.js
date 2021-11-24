@@ -7,18 +7,19 @@ import "../../styles/cardCharacters.scss";
 import PropTypes, { func } from "prop-types";
 import { Context } from "../store/appContext";
 
-export const CardCharacter = props => {
+export const CardStarship = props => {
 	const { store, actions } = useContext(Context);
 
 	var images = store.images;
+	//fetch de people/...
 
-	const [person, setPerson] = useState([]);
+	const [starship, setStarship] = useState([]);
 
 	useEffect(() => {
 		const obtenerDatos = async () => {
-			const data2 = await fetch(`https://www.swapi.tech/api/people/${props.uid}`);
+			const data2 = await fetch(`https://www.swapi.tech/api/starships/${props.uid}`);
 			const users2 = await data2.json();
-			setPerson(users2.result.properties);
+			setStarship(users2.result.properties);
 		};
 		obtenerDatos();
 	}, []);
@@ -36,17 +37,17 @@ export const CardCharacter = props => {
 				/>
 				<div className="card-body">
 					<h5 className="card-title">
-						Name: <strong>{props.name}</strong>
+						Model: <strong>{props.model}</strong>
 					</h5>
 
 					<p className="card-text" style={{ lineHeight: "1.5" }}>
-						Gender: <strong>{person.gender}</strong>
+						Manufacturer: <strong>{starship.manufacturer}</strong>
 					</p>
 					<p className="card-text" style={{ lineHeight: "1.5" }}>
-						Hair Color: <strong>{person.hair_color}</strong>
+						Cost in credits: <strong>{starship.cost_in_credits}</strong>
 					</p>
 					<p className="card-text" style={{ lineHeight: "1.5" }}>
-						Eye Color: <strong>{person.eye_color}</strong>
+						Maximum atmosphering speed: <strong>{starship.max_atmosphering_speed}</strong>
 					</p>
 					<div className="d-flex buttonsDiv">
 						<Link to={`/demo/${props.uid}`}>
@@ -66,8 +67,11 @@ export const CardCharacter = props => {
 		</React.Fragment>
 	);
 };
-CardCharacter.propTypes = {
+
+CardStarship.propTypes = {
 	name: PropTypes.string,
+	model: PropTypes.string,
 	uid: PropTypes.string,
-	gender: PropTypes.string
+	manufacturer: PropTypes.string,
+	max_atmosphering_speed: PropTypes.string
 };

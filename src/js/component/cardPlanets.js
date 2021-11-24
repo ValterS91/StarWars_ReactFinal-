@@ -11,7 +11,6 @@ import { Context } from "../store/appContext";
 
 export const CardPlanets = props => {
 	const { store, actions } = useContext(Context);
-	//fetch de people/...
 
 	const [planets, setPlanets] = useState([]);
 
